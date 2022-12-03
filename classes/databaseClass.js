@@ -18,15 +18,23 @@ class DataBase {
     this.db = db;
   }
   //it returns the table from database
-  returnTable(table) {
+  getTable(table) {
     this.db.query(`SELECT * FROM ${table}`, (err, data) => {
-      err ? console.log(err) : console.log(data);
+      if (err) {
+        console.log(err);
+        return;
+      }
+      return console.log(data);
     });
   }
   //removing rows from data
   removeFromTable(table, id) {
     this.db.query(`DELETE FROM ${table} WHERE id = ${id}`, (err, data) => {
-      err ? console.log(err) : console.log(data);
+      if (err) {
+        console.log(err);
+        return;
+      }
+      console.log(data);
     });
   }
   addToTable(table, array) {
@@ -38,7 +46,11 @@ class DataBase {
           //INSERT INTO department(name) VALUE("name"))
           `INSERT INTO ${table}(name) VALUE (${JSON.stringify(...array)})`,
           (err, data) => {
-            err ? console.log(err) : console.log(data);
+            if (err) {
+              console.log(err);
+              return;
+            }
+            return data;
           }
         );
         break;
@@ -49,7 +61,11 @@ class DataBase {
           //INSERT INTO role(name) VALUE("name"))
           `INSERT INTO ${table}(name) VALUE (${JSON.stringify(...array)})`,
           (err, data) => {
-            err ? console.log(err) : console.log(data);
+            if (err) {
+              console.log(err);
+              return;
+            }
+            return data;
           }
         );
         break;
@@ -59,7 +75,11 @@ class DataBase {
           //INSERT INTO role(name) VALUE("name"))
           `INSERT INTO ${table}(name) VALUE (${JSON.stringify(...array)})`,
           (err, data) => {
-            err ? console.log(err) : console.log(data);
+            if (err) {
+              console.log(err);
+              return;
+            }
+            return data;
           }
         );
         break;
@@ -70,4 +90,6 @@ class DataBase {
 //add to table
 
 database = new DataBase();
-database.addToTable("department", ["ART"]);
+database.getTable("department");
+
+module.exports = DataBase;
