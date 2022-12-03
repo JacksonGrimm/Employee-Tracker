@@ -30,20 +30,40 @@ class DataBase {
     });
   }
   addToTable(table, array) {
-    // switch (table) {
-    //   case "department":
-    //     console.log("department");
-    //     break;
-    //   case "role":
-    //     console.log("role");
-    //     break;
-    //}
-    this.db.query(
-      `INSERT INTO ${table}(name) VALUE (${JSON.stringify(array[0])})`,
-      (err, data) => {
-        err ? console.log(err) : console.log(data);
-      }
-    );
+    //switch statement to check for different tables
+    switch (table) {
+      case "department":
+        this.db.query(
+          //looks like
+          //INSERT INTO department(name) VALUE("name"))
+          `INSERT INTO ${table}(name) VALUE (${JSON.stringify(...array)})`,
+          (err, data) => {
+            err ? console.log(err) : console.log(data);
+          }
+        );
+        break;
+      case "role":
+        //INCOMPLETE
+        this.db.query(
+          //looks like
+          //INSERT INTO role(name) VALUE("name"))
+          `INSERT INTO ${table}(name) VALUE (${JSON.stringify(...array)})`,
+          (err, data) => {
+            err ? console.log(err) : console.log(data);
+          }
+        );
+        break;
+      case "employee":
+        //INCOMPLETE
+        this.db.query(
+          //INSERT INTO role(name) VALUE("name"))
+          `INSERT INTO ${table}(name) VALUE (${JSON.stringify(...array)})`,
+          (err, data) => {
+            err ? console.log(err) : console.log(data);
+          }
+        );
+        break;
+    }
   }
 }
 //remove from table
