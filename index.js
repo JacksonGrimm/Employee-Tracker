@@ -61,21 +61,14 @@ const start = async () => {
         dataBase.getTable("department").then();
         break;
       case "Remove Department":
-        jobDetails = await prompt([
+        departmentName = await prompt([
           {
-            name: "info",
+            name: "name",
             type: "input",
-            message: "Whats the Interns school?",
+            message: "Whats the department name?",
           },
         ]);
-        employeeArr.push(
-          new Intern(
-            userInput.employeeName,
-            userInput.employeeId,
-            userInput.employeeEmail,
-            jobDetails.info
-          )
-        );
+        dataBase.removeFromTable("department", departmentName.name).then();
         break;
       case "Add Role":
         console.log("Add Role");

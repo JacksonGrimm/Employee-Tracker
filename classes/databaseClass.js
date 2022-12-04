@@ -28,15 +28,15 @@ class DataBase {
     });
   }
   //removing rows from data
-  async removeFromTable(table, id) {
-    this.db.query(`DELETE FROM ${table} WHERE name = ${id}`, (err, data) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      console.log(data);
-    });
-  }
+  // async removeFromTable(table, id) {
+  //   this.db.query(`DELETE FROM ${table} WHERE name=${id}`, (err, data) => {
+  //     if (err) {
+  //       console.log(err);
+  //       return;
+  //     }
+  //     console.log(data);
+  //   });
+  //}
   async addToTable(table, array) {
     //switch statement to check for different tables
     switch (table) {
