@@ -58,21 +58,7 @@ const start = async () => {
           .then(console.log("Added to Department"));
         break;
       case "View Departments":
-        jobDetails = await prompt([
-          {
-            name: "info",
-            type: "input",
-            message: "Whats the Engineers Github?",
-          },
-        ]);
-        employeeArr.push(
-          new Engineer(
-            userInput.employeeName,
-            userInput.employeeId,
-            userInput.employeeEmail,
-            jobDetails.info
-          )
-        );
+        dataBase.getTable("department").then();
         break;
       case "Remove Department":
         jobDetails = await prompt([

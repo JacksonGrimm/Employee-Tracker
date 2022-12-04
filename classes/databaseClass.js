@@ -22,14 +22,14 @@ class DataBase {
     this.db.query(`SELECT * FROM ${table}`, (err, data) => {
       if (err) {
         console.log(err);
-        return;
       }
-      return console.log(data);
+      console.log(" ");
+      console.table(data);
     });
   }
   //removing rows from data
   async removeFromTable(table, id) {
-    this.db.query(`DELETE FROM ${table} WHERE id = ${id}`, (err, data) => {
+    this.db.query(`DELETE FROM ${table} WHERE name = ${id}`, (err, data) => {
       if (err) {
         console.log(err);
         return;
