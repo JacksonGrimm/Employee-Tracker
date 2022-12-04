@@ -50,7 +50,7 @@ class DataBase {
               console.log(err);
               return;
             }
-            return data;
+            console.log(data);
           }
         );
         break;
