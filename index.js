@@ -9,7 +9,7 @@ dataBase = new DataBase();
 //promisying a method from the class
 dataBase.addToTable = promisify(dataBase.addToTable);
 dataBase.getTable = promisify(dataBase.getTable);
-dataBase.removeFromTable = promisify(dataBase.removeFromTable);
+// dataBase.removeFromTable = promisify(dataBase.removeFromTable);
 
 const start = async () => {
   while (loop) {
