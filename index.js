@@ -1,15 +1,13 @@
 const { prompt } = require("inquirer");
+const { promisify } = require("util");
 const DataBase = require("./classes/databaseClass");
 
+//start loop to keep running the program
 loop = true;
-
+//custom database class
 dataBase = new DataBase();
-
-const classAddToTable = async (table, action) => {
-  //example
-  //   dataBase.addToTable("department", departmentName.name);
-  return await dataBase.addToTable(table, action);
-};
+//promisying a method from the class
+dataBase.addToTable = promisify(dataBase.addToTable);
 
 const start = async () => {
   while (loop) {
@@ -52,7 +50,10 @@ const start = async () => {
             message: "Whats the department name?",
           },
         ]);
-        await classAddToTable("department", departmentName.name);
+        //function takes augments takes string table name and array
+        dataBase
+          .addToTable("department", [departmentName.name])
+          .then(console.log("Added to Department"));
         break;
       case "View Departments":
         jobDetails = await prompt([

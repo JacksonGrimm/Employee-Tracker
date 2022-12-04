@@ -50,46 +50,42 @@ class DataBase {
               console.log(err);
               return;
             }
-            console.log("Added Department");
           }
         );
         break;
-      case "role":
-        //INCOMPLETE
-        this.db.query(
-          //looks like
-          //INSERT INTO role(name) VALUE("name"))
-          `INSERT INTO ${table}(name) VALUE (${JSON.stringify(...array)})`,
-          (err, data) => {
-            if (err) {
-              console.log(err);
-              return;
-            }
-            return data;
-          }
-        );
-        break;
-      case "employee":
-        //INCOMPLETE
-        this.db.query(
-          //INSERT INTO role(name) VALUE("name"))
-          `INSERT INTO ${table}(name) VALUE (${JSON.stringify(...array)})`,
-          (err, data) => {
-            if (err) {
-              console.log(err);
-              return;
-            }
-            return data;
-          }
-        );
-        break;
+      // case "role":
+      //   //INCOMPLETE
+      //   this.db.query(
+      //     //looks like
+      //     //INSERT INTO role(name) VALUE("name"))
+      //     `INSERT INTO ${table}(name) VALUE (${JSON.stringify(...array)})`,
+      //     (err, data) => {
+      //       if (err) {
+      //         console.log(err);
+      //         return;
+      //       }
+      //       return data;
+      //     }
+      //   );
+      //   break;
+      // case "employee":
+      //INCOMPLETE
+      // this.db.query(
+      //   //INSERT INTO role(name) VALUE("name"))
+      //   `INSERT INTO ${table}(name) VALUE (${JSON.stringify(...array)})`,
+      //   (err, data) => {
+      //     if (err) {
+      //       console.log(err);
+      //       return;
+      //     }
+      //     return data;
+      //   }
+      // // );
+      // break;
     }
   }
 }
 //remove from table
 //add to table
-
-// database = new DataBase();
-// database.getTable("department");
 
 module.exports = DataBase;
