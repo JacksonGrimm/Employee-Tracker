@@ -1,6 +1,15 @@
 const { prompt } = require("inquirer");
+const DataBase = require("./classes/databaseClass");
 
 loop = true;
+
+dataBase = new DataBase();
+
+const classAddToTable = async (table, action) => {
+  //example
+  //   dataBase.addToTable("department", departmentName.name);
+  return await dataBase.addToTable(table, action);
+};
 
 const start = async () => {
   while (loop) {
@@ -34,25 +43,18 @@ const start = async () => {
       },
     ]);
     console.log(userInput);
-    switch (userInput.employeeJob) {
-      case "Manager":
-        jobDetails = await prompt([
+    switch (userInput.userAction) {
+      case "Add Department":
+        departmentName = await prompt([
           {
-            name: "info",
+            name: "name",
             type: "input",
-            message: "Whats the managers office number?",
+            message: "Whats the department name?",
           },
         ]);
-        employeeArr.push(
-          new Manager(
-            userInput.employeeName,
-            userInput.employeeId,
-            userInput.employeeEmail,
-            jobDetails.info
-          )
-        );
+        await classAddToTable("department", departmentName.name);
         break;
-      case "Engineer":
+      case "View Departments":
         jobDetails = await prompt([
           {
             name: "info",
@@ -69,7 +71,7 @@ const start = async () => {
           )
         );
         break;
-      case "Intern":
+      case "Remove Department":
         jobDetails = await prompt([
           {
             name: "info",
@@ -85,6 +87,24 @@ const start = async () => {
             jobDetails.info
           )
         );
+        break;
+      case "Add Role":
+        console.log("Add Role");
+        break;
+      case "View Roles":
+        console.log("View Roles");
+        break;
+      case "Remove Role":
+        console.log("Remove Role");
+        break;
+      case "Add Employee":
+        console.log("Add Employee");
+        break;
+      case "View Employees":
+        console.log("View Employee");
+        break;
+      case "Remove Employee":
+        console.log("Remove Employee");
         break;
     }
   }

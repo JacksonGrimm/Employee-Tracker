@@ -18,7 +18,7 @@ class DataBase {
     this.db = db;
   }
   //it returns the table from database
-  getTable(table) {
+  async getTable(table) {
     this.db.query(`SELECT * FROM ${table}`, (err, data) => {
       if (err) {
         console.log(err);
@@ -28,7 +28,7 @@ class DataBase {
     });
   }
   //removing rows from data
-  removeFromTable(table, id) {
+  async removeFromTable(table, id) {
     this.db.query(`DELETE FROM ${table} WHERE id = ${id}`, (err, data) => {
       if (err) {
         console.log(err);
@@ -37,7 +37,7 @@ class DataBase {
       console.log(data);
     });
   }
-  addToTable(table, array) {
+  async addToTable(table, array) {
     //switch statement to check for different tables
     switch (table) {
       case "department":
@@ -50,7 +50,7 @@ class DataBase {
               console.log(err);
               return;
             }
-            console.log(data);
+            console.log("Added Department");
           }
         );
         break;
@@ -89,7 +89,7 @@ class DataBase {
 //remove from table
 //add to table
 
-database = new DataBase();
-database.getTable("department");
+// database = new DataBase();
+// database.getTable("department");
 
 module.exports = DataBase;
