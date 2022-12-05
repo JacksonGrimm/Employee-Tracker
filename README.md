@@ -26,7 +26,7 @@ clone the files, do a npm i and set up database using the schema file
 
 ## Media
 
-screnshot here
+![Alt text](screenshot1.png)
 
 ## Uses
 
