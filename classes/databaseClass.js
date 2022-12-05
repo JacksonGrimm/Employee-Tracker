@@ -55,32 +55,28 @@ class DataBase {
         break;
       case "role":
         //INCOMPLETE
-        this.db.query(
-          //looks like
-          //INSERT INTO role(name) VALUE("name"))
-          `INSERT INTO ${table}(name) VALUE (${JSON.stringify(...array)})`,
-          (err, data) => {
-            if (err) {
-              console.log(err);
-              return;
-            }
-            return data;
+        let mySQlLineRole = `INSERT INTO ${table}(title,salary,department_id) VALUE (${JSON.stringify(
+          array[0]
+        )},${array[1]},${array[2]})`;
+        this.db.query(mySQlLineRole, (err, data) => {
+          if (err) {
+            console.log(err);
+            return;
           }
-        );
+          return data;
+        });
         break;
       case "employee":
-        INCOMPLETE;
-        this.db.query(
-          //INSERT INTO role(name) VALUE("name"))
-          `INSERT INTO ${table}(name) VALUE (${JSON.stringify(...array)})`,
-          (err, data) => {
-            if (err) {
-              console.log(err);
-              return;
-            }
-            return data;
+        let mySQlLineEmployee = `INSERT INTO ${table}(title,salary,department_id) VALUE (${JSON.stringify(
+          array[0]
+        )},${array[1]},${array[2]})`;
+        this.db.query(mySQlLineEmployee, (err, data) => {
+          if (err) {
+            console.log(err);
+            return;
           }
-        );
+          return data;
+        });
         break;
     }
   }

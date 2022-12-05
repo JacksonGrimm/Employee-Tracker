@@ -72,15 +72,50 @@ const start = async () => {
         break;
       case "Add Role":
         console.log("Add Role");
+        departmentName = await prompt([
+          {
+            name: "title",
+            type: "input",
+            message: "Whats the Roles Title?",
+          },
+          {
+            name: "salary",
+            type: "input",
+            message: "Whats the Role Salary?",
+          },
+          {
+            name: "department",
+            type: "input",
+            message: "Whats the department ID that this role is assigned to?",
+          },
+        ]);
+        //function takes augments takes string table name and array
+        dataBase
+          .addToTable("role", [
+            departmentName.title,
+            departmentName.salary,
+            departmentName.department,
+          ])
+          .then(console.log("Added to Role"));
         break;
       case "View Roles":
-        console.log("View Roles");
+        dataBase.getTable("role").then();
         break;
       case "Remove Role":
         console.log("Remove Role");
         break;
       case "Add Employee":
-        console.log("Add Employee");
+        departmentName = await prompt([
+          {
+            name: "name",
+            type: "input",
+            message: "Whats the department name?",
+          },
+        ]);
+        //function takes augments takes string table name and array
+        dataBase
+          .addToTable("department", [departmentName.name])
+          .then(console.log("Added to Department"));
         break;
       case "View Employees":
         console.log("View Employee");
