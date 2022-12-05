@@ -32,13 +32,10 @@ const start = async () => {
         choices: [
           "Add Department",
           "View Departments",
-          "Remove Department",
           "Add Role",
           "View Roles",
-          "Remove Role",
           "Add Employee",
           "View Employees",
-          "Remove Employee",
         ],
       },
     ]);
