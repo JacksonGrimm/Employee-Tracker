@@ -37,7 +37,7 @@ class DataBase {
   //     console.log(data);
   //   });
   //}
-  async addToTable(table, array) {
+  async addToTable(table, array, hasManager) {
     //switch statement to check for different tables
     switch (table) {
       case "department":
@@ -67,9 +67,16 @@ class DataBase {
         });
         break;
       case "employee":
-        let mySQlLineEmployee = `INSERT INTO ${table}(title,salary,department_id) VALUE (${JSON.stringify(
-          array[0]
-        )},${array[1]},${array[2]})`;
+        let mySQlLineEmployee = "";
+        if (hasManager) {
+          mySQlLineEmployee = `INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUE (${JSON.stringify(
+            array[0]
+          )},${JSON.stringify(array[1])},${array[2]},${array[3]})`;
+        } else {
+          mySQlLineEmployee = `INSERT INTO ${table}(first_name,last_name,role_id) VALUE (${JSON.stringify(
+            array[0]
+          )},${JSON.stringify(array[1])},${array[2]})`;
+        }
         this.db.query(mySQlLineEmployee, (err, data) => {
           if (err) {
             console.log(err);

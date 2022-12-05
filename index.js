@@ -105,18 +105,46 @@ const start = async () => {
         console.log("Remove Role");
         break;
       case "Add Employee":
+        console.log("add Employee");
         departmentName = await prompt([
           {
-            name: "name",
+            name: "firstName",
             type: "input",
-            message: "Whats the department name?",
+            message: "Whats the Employees first name?",
+          },
+          {
+            name: "lastName",
+            type: "input",
+            message: "Whats the Employees last name?",
+          },
+          {
+            name: "role",
+            type: "input",
+            message: "Whats the role ID that this employee is assigned to?",
+          },
+          {
+            name: "hasManager",
+            type: "confirm",
+            message: "does this employee have a manager?",
           },
         ]);
+        const valuesArray = [
+          departmentName.firstName,
+          departmentName.lastName,
+          departmentName.role,
+        ];
+        if (departmentName.hasManager) {
+          (manager = await prompt({
+            name: "manager",
+            type: "input",
+            message: "Whats the employees manager id?",
+          })),
+            valuesArray.push(manager.manager);
+        }
         //function takes augments takes string table name and array
         dataBase
-          .addToTable("department", [departmentName.name])
-          .then(console.log("Added to Department"));
-        break;
+          .addToTable("employee", valuesArray, departmentName.hasManager)
+          .then(console.log());
       case "View Employees":
         console.log("View Employee");
         break;
