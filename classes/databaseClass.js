@@ -19,13 +19,56 @@ class DataBase {
   }
   //it returns the table from database
   async getTable(table) {
-    this.db.query(`SELECT * FROM ${table}`, (err, data) => {
-      if (err) {
-        console.log(err);
-      }
-      console.log(" ");
-      console.table(data);
-    });
+    switch (table) {
+      case "department":
+        this.db.query(
+          //looks like
+          //INSERT INTO department(name) VALUE("name"))
+          `SELECT * FROM department`,
+          (err, data) => {
+            if (err) {
+              console.log(err);
+              return;
+            }
+            console.log("");
+            console.table(data);
+          }
+        );
+        break;
+      case "role":
+        this.db.query(
+          //looks like
+          //INSERT INTO department(name) VALUE("name"))
+          `SELECT * FROM role
+          INNER JOIN department
+          ON role.department_id = department.id;`,
+          (err, data) => {
+            if (err) {
+              console.log(err);
+              return;
+            }
+            console.log("");
+            console.table(data);
+          }
+        );
+        break;
+      case "employee":
+        this.db.query(
+          //looks like
+          //INSERT INTO department(name) VALUE("name"))
+          `SELECT * FROM employee
+          INNER JOIN role
+          ON employee.role_id = role.role_id;`,
+          (err, data) => {
+            if (err) {
+              console.log(err);
+              return;
+            }
+            console.log("");
+            console.table(data);
+          }
+        );
+    }
   }
   //removing rows from data
   // async removeFromTable(table, id) {

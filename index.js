@@ -146,7 +146,7 @@ const start = async () => {
           .addToTable("employee", valuesArray, departmentName.hasManager)
           .then(console.log());
       case "View Employees":
-        console.log("View Employee");
+        dataBase.getTable("employee").then();
         break;
       case "Remove Employee":
         console.log("Remove Employee");
