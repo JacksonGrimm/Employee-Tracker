@@ -14,6 +14,7 @@ const db = mysql.createConnection(
 
 //class
 class DataBase {
+  //sets the db to the myslq connection
   constructor() {
     this.db = db;
   }
@@ -70,16 +71,6 @@ class DataBase {
         );
     }
   }
-  //removing rows from data
-  // async removeFromTable(table, id) {
-  //   this.db.query(`DELETE FROM ${table} WHERE name=${id}`, (err, data) => {
-  //     if (err) {
-  //       console.log(err);
-  //       return;
-  //     }
-  //     console.log(data);
-  //   });
-  //}
   async addToTable(table, array, hasManager) {
     //switch statement to check for different tables
     switch (table) {
@@ -130,8 +121,30 @@ class DataBase {
         break;
     }
   }
+  //pseudo
+  //update table
+  //Select table you would like top edit (employee)
+  //select employee you would like to edit by id's
+  //Select what role id you would like you change it to
+  //UPDATE employees SET role_id = [userinput] WHERE id = desired employee;
+  async editEmployee(id, newRole) {
+    //select table and then update
+    this.db.query(`SELECT * FROM employee WHERE id = ${id}`, (err, data) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+    });
+    this.db.query(
+      `UPDATE employee SET role_id = ${newRole} WHERE id = ${id}`,
+      (err, data) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
+      }
+    );
+  }
 }
-//remove from table
-//add to table
 
 module.exports = DataBase;

@@ -9,10 +9,12 @@ dataBase = new DataBase();
 //promisying a method from the class
 dataBase.addToTable = promisify(dataBase.addToTable);
 dataBase.getTable = promisify(dataBase.getTable);
-// dataBase.removeFromTable = promisify(dataBase.removeFromTable);
+dataBase.editEmployee = promisify(dataBase.editEmployee);
 
+//kicks of userinput loop
 const start = async () => {
   while (loop) {
+    //program start if false kills the loop
     startPrompt = await prompt([
       {
         type: "confirm",
@@ -24,6 +26,7 @@ const start = async () => {
       loop = false;
       break;
     }
+    //main user options
     userInput = await prompt([
       {
         name: "userAction",
@@ -36,10 +39,12 @@ const start = async () => {
           "View Roles",
           "Add Employee",
           "View Employees",
+          "Edit Employee",
         ],
       },
     ]);
     console.log(userInput);
+    //switch statement for the options and runs dataBase class with different parameters depending on what was selected
     switch (userInput.userAction) {
       case "Add Department":
         departmentName = await prompt([
@@ -56,16 +61,6 @@ const start = async () => {
         break;
       case "View Departments":
         dataBase.getTable("department").then();
-        break;
-      case "Remove Department":
-        departmentName = await prompt([
-          {
-            name: "name",
-            type: "input",
-            message: "Whats the department name?",
-          },
-        ]);
-        dataBase.removeFromTable("department", departmentName.name).then();
         break;
       case "Add Role":
         console.log("Add Role");
@@ -97,9 +92,6 @@ const start = async () => {
         break;
       case "View Roles":
         dataBase.getTable("role").then();
-        break;
-      case "Remove Role":
-        console.log("Remove Role");
         break;
       case "Add Employee":
         console.log("add Employee");
@@ -145,9 +137,20 @@ const start = async () => {
       case "View Employees":
         dataBase.getTable("employee").then();
         break;
-      case "Remove Employee":
-        console.log("Remove Employee");
-        break;
+      case "Edit Employee":
+        userSelect = await prompt([
+          {
+            name: "employeeID",
+            type: "input",
+            message: "Whats the Employees ID you would like to change?",
+          },
+          {
+            name: "newRole",
+            type: "input",
+            message: "what would you liked the employees new role to be?",
+          },
+        ]);
+        dataBase.editEmployee(userSelect.employeeID, userSelect.newRole).then();
     }
   }
 };
